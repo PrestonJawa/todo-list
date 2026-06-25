@@ -6,6 +6,29 @@
     <title>Todo List</title>
 </head>
 <body>
-    
+    <div class="app">
+        <div class="sidebar">
+            <h1>Folders</h1>
+            <div class="folders">
+                <div class="folder">
+                    <button class="folder-name">Personal</button>
+                    <div class="button-actions">
+                        <button class="edit">✏️</button>
+                        <button class="delete">✖</button> 
+                    </div>        
+                </div>    
+            </div>
+            <Button class="folder-button">Add new</Button>
+        </div>
+        <div class="main">
+
+        </div>
+    </div>
+    <div id="form" class="hidden">
+        <form action="example.com/path" method="post">
+            <label for="folder-name">Folder name *</label>
+            <input type="text" id="folder-name" placeholder="Eg. Personal">
+        </form>
+    </div>
 </body>
 </html>

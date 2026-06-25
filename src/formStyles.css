@@ -1,0 +1,22 @@
+.hidden {
+    display: none;
+}
+
+#form {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    height: 50%;
+    width: 50%;
+}
