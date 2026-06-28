@@ -6,6 +6,75 @@
     <title>Todo List</title>
 </head>
 <body>
-    
+    <div class="app">
+        <div class="sidebar">
+            <h1>Folders</h1>
+            <div class="folders">
+                <div class="folder">
+                    <button class="folder-name">Personal</button>
+                    <div class="button-actions">
+                        <button class="edit">✏️</button>
+                        <button class="delete">✖</button> 
+                    </div>        
+                </div>    
+            </div>
+            <Button class="folder-button">Add new</Button>
+        </div>
+        <div class="main">
+            <div class="todo">
+                <input type="checkbox">
+                <button class="todo-name">Drink water</button>
+                <div class="button-actions">
+                    <button class="edit">✏️</button>
+                    <button class="delete">✖</button> 
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="folder-screen" class="show">
+        <form>
+            <div class="question">
+                <label for="folder-name">Folder name *</label>
+                <input type="text" 
+                    id="folder-name" 
+                    name="folderName" 
+                    placeholder="Eg. Personal" 
+                    required>
+            </div>
+            <button class="close">✖</button>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    <div id="todo-screen" class="hide">
+        <form>
+            <div class="question">
+                <label for="todo-name">task *</label>
+                <input type="text" 
+                    id="folder-name" 
+                    name="taskName" 
+                    placeholder="Eg. Walk the Dog" 
+                    required>
+
+            </div>
+            <div class="question">
+                <label for="todo-description">Description (optional)</label>
+                <input type="text" 
+                    id="todo-description" 
+                    name="taskDescription">
+            </div>
+            <div class="question">
+                <label for="todo-priority">Priority*</label>
+                <select id="todo-priority">
+                    <option value="low">Low</option>
+                    <option value="med">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+                <button class="close">✖</button>
+                <button type="submit">Save</button>  
+        </form>
+    </div>
 </body>
 </html>
