@@ -31,9 +31,7 @@ export class Folder {
     }
 
     renameFolder(id, newName) {
-        const folder = this.container.querySelector(
-            `.folder[data-id="${id}"]`
-        );
+        const folder = this.container.querySelector(`.folder[data-id="${id}"]`);
 
         if (folder) {
             folder.querySelector(".folder-name").textContent = newName;
