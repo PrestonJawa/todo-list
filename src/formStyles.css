@@ -1,30 +1,29 @@
-#folder-screen {
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    inset: 0;
-    display: none;            /* hidden by default */
-    justify-content: center;
-    align-items: center;
-}
+/* Universal styles */
 
-#folder-screen.show {
+#folder-screen.show, #todo-screen.show {
     display: flex;
 }
 
-#folder-screen form {
+.question {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    height: 300px;
-    width: 250px;
-    background-color: white;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+form button {
+    width: 100%;
+    height: 25px;
+    background-color: #1992D4;
+    color: white;
+    border-radius: 5px;
 }
 
 .close {
-    width: 50px;
-    height: 30px;
+    margin-top: auto;
     margin-bottom: 10px;
     color: black;
 }
@@ -39,33 +38,42 @@ button[type="submit"]:hover {
     color: white;
 }
 
-.folder-container form {
-    display: flex;
-    flex-direction: column;
+input, select {
+    width: 100%;
+}
+
+/* folder stlyes */
+
+#folder-screen {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    inset: 0;
+    display: none;
     justify-content: center;
-    background-color: white;
-    flex: 1;
-    width: 100%;
-    padding: 20px;
+    align-items: center;
 }
 
-.question {
+#folder-screen form {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    gap: 5px;
-    width: 100%;
+    height: 200px;
+    width: 250px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
 }
 
-form input {
-    width: 80%;
-}
+/* todo styles */
 
 #todo-screen {
     height: 100vh;
     width: 100vw;
     position: fixed;
     inset: 0;
-    display: none;            /* hidden by default */
+    display: none;
     justify-content: center;
     align-items: center;
 }
@@ -74,12 +82,9 @@ form input {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: pink;
-    flex: 1;
-    width: 100%;
-    padding: 20px;  
-}
-
-#folder-screen.show, #todo-screen.show {
-    display: flex;
+    background-color: white;
+    height: 300px;
+    width: 270px;
+    padding: 20px;
+    border-radius: 10px;
 }

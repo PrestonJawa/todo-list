@@ -1,5 +1,8 @@
 import { FolderManager } from "./folderManager.js";
+import { TodoManager } from "./todoManager.js";
 import "./styles.css";
 import "./formStyles.css";
 
-let folderManager = new FolderManager();
+const folderManager = new FolderManager();
+const todoManager = new TodoManager(folderManager);
+folderManager.setTodoManager(todoManager);

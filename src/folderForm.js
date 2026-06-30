@@ -45,27 +45,4 @@ export class FolderForm {
         this.editingId = null;
         this.name = "";
     }
-
-    _initialize(){
-        this.close.addEventListener("click", () => {
-            this.folderForm.hide();
-            this.folderForm.clear();
-        });
-
-        this.submit.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            if (this.folderForm.mode == "create") {
-                this.folder.createFolder(this.folderForm.name);
-            } else {
-                this.folder.renameFolder(
-                    this.folderForm.editingId,
-                    this.folderForm.name
-                );
-            }
-
-            this.folderForm.hide();
-            this.folderForm.clear();
-        });
-    }
 }

@@ -12,27 +12,25 @@
             <div class="folders">
                 <div class="folder">
                     <button class="folder-name">Personal</button>
-                    <div class="button-actions">
-                        <button class="edit">✏️</button>
-                        <button class="delete">✖</button> 
-                    </div>        
                 </div>    
             </div>
-            <Button class="folder-button">Add new</Button>
+            <div class="creation-buttons">
+                <Button class="folder-button">Create Folder</Button>
+                <button class="create-todo">Create Todo</button>
+
+            </div>
         </div>
         <div class="main">
-            <div class="todo">
+            <div class="todo completed">
                 <input type="checkbox">
                 <button class="todo-name">Drink water</button>
-                <div class="button-actions">
-                    <button class="edit">✏️</button>
-                    <button class="delete">✖</button> 
+                <button class="delete">✖</button> 
                 </div>
             </div>
 
         </div>
     </div>
-    <div id="folder-screen" class="show">
+    <div id="folder-screen">
         <form>
             <div class="question">
                 <label for="folder-name">Folder name *</label>
@@ -42,38 +40,32 @@
                     placeholder="Eg. Personal" 
                     required>
             </div>
-            <button class="close">✖</button>
+            <button type="button" class="close" id="folder">✖</button>
             <button type="submit">Save</button>
         </form>
     </div>
 
-    <div id="todo-screen" class="hide">
+    <div id="todo-screen">
         <form>
             <div class="question">
-                <label for="todo-name">task *</label>
+                <label for="todo-name">Task *</label>
                 <input type="text" 
-                    id="folder-name" 
+                    id="todo-name" 
                     name="taskName" 
                     placeholder="Eg. Walk the Dog" 
                     required>
 
             </div>
             <div class="question">
-                <label for="todo-description">Description (optional)</label>
-                <input type="text" 
-                    id="todo-description" 
-                    name="taskDescription">
-            </div>
-            <div class="question">
-                <label for="todo-priority">Priority*</label>
-                <select id="todo-priority">
+                <label for="todo-priority">Priority *</label>
+                <select id="todo-priority" required>
                     <option value="low">Low</option>
                     <option value="med">Medium</option>
                     <option value="high">High</option>
                 </select>
             </div>
-                <button class="close">✖</button>
-                <button type="submit">Save</button>  
+            <button type="button" class="close" id="todo">✖</button>
+            <button type="submit">Save</button>  
         </form>
     </div>
 </body>

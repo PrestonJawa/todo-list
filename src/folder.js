@@ -1,9 +1,15 @@
 export class Folder {
     static idCounter = 0;
 
-    constructor(container, folderForm) {
+    constructor(folderForm) {
         this.container = document.querySelector(".folders");
         this.folderForm = folderForm;
+        this.currentFolderId = null;
+        this.folders = [];
+    }
+
+    setManager(todoManager){
+        this.todoManager = todoManager;
     }
 
     createFolder(name) {
@@ -14,23 +20,25 @@ export class Folder {
         folder.dataset.id = id;
         Folder.idCounter++;
 
-        const folderButton = document.createElement("button");
-        folderButton.classList.add("folder-name");
-        folderButton.textContent = name;
+        const folderButton = this.createFolderNameButton(name, id);
 
         const buttonActions = document.createElement("div");
         buttonActions.classList.add("button-actions");
 
-        const buttonEdit = this._createEditButton();
-        const buttonDelete = this._createDeleteButton();
+        const buttonEdit = this.createEditButton();
+        const buttonDelete = this.createDeleteButton();
 
         buttonActions.append(buttonEdit, buttonDelete);
 
         folder.append(folderButton, buttonActions);
         this.container.appendChild(folder);
+
+        const folderData = {id, name};
+        this.folders.push(folderData);
+        
     }
 
-    renameFolder(id, newName) {
+    renameFolder(newName, id) {
         const folder = this.container.querySelector(`.folder[data-id="${id}"]`);
 
         if (folder) {
@@ -38,7 +46,21 @@ export class Folder {
         }
     }
 
-    _createEditButton() {
+    createFolderNameButton(name, id) {
+        const folderButton = document.createElement("button");
+        folderButton.classList.add("folder-name");
+        folderButton.textContent = name;
+
+        folderButton.dataset.id = id;
+
+        folderButton.addEventListener("click", () => {
+            this.currentFolderId = id;
+        });
+
+        return folderButton;
+    }
+
+    createEditButton() {
         const buttonEdit = document.createElement("button");
         buttonEdit.classList.add("edit");
         buttonEdit.textContent = "✏️";
@@ -55,13 +77,16 @@ export class Folder {
         return buttonEdit;
     }
 
-    _createDeleteButton() {
+    createDeleteButton() {
         const buttonDelete = document.createElement("button");
         buttonDelete.classList.add("delete");
         buttonDelete.textContent = "✖";
 
-        buttonDelete.addEventListener("click", (e) => {
+        buttonDelete.addEventListener("click", (e) => {  
+            this.todoManager.deleteTodosFolder(this.currentFolderId);
             e.currentTarget.closest(".folder").remove();
+            this.currentFolderId = null;
+            this.todoManager.todo.loadTodos(this.currentFolderId);
         });
 
         return buttonDelete;
