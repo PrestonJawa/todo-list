@@ -1,5 +1,4 @@
 export class Folder {
-    static idCounter = 0;
 
     constructor(folderForm) {
         this.container = document.querySelector(".folders");
@@ -13,80 +12,87 @@ export class Folder {
     }
 
     createFolder(name) {
+        const id = crypto.randomUUID();
+        const folderData = {id, name};
+        this.folders.push(folderData);
+
+        const item = this.makeFolder(folderData);
+        this.container.appendChild(item);
+    }
+
+    makeFolder(data) {
         const folder = document.createElement("div");
         folder.classList.add("folder");
 
-        const id = `folder-${Folder.idCounter}`;
-        folder.dataset.id = id;
-        Folder.idCounter++;
 
-        const folderButton = this.createFolderNameButton(name, id);
+        const folderButton = this.createFolderNameButton(data);
 
         const buttonActions = document.createElement("div");
         buttonActions.classList.add("button-actions");
 
-        const buttonEdit = this.createEditButton();
-        const buttonDelete = this.createDeleteButton();
+        const buttonEdit = this.createEditButton(data);
+        const buttonDelete = this.createDeleteButton(data.id);
 
         buttonActions.append(buttonEdit, buttonDelete);
-
         folder.append(folderButton, buttonActions);
-        this.container.appendChild(folder);
 
-        const folderData = {id, name};
-        this.folders.push(folderData);
-        
+        return folder;
     }
 
     renameFolder(newName, id) {
-        const folder = this.container.querySelector(`.folder[data-id="${id}"]`);
+        const data = this.folders.find(folder => folder.id == id);
+        data.name = newName;
+        this.loadFolders();
+    }
 
-        if (folder) {
-            folder.querySelector(".folder-name").textContent = newName;
+    loadFolders(){
+        this.container.innerHTML = "";
+
+        for(let folder of this.folders){
+            const item = this.makeFolder(folder);
+            this.container.appendChild(item);
         }
     }
 
-    createFolderNameButton(name, id) {
+    createFolderNameButton(data) {
         const folderButton = document.createElement("button");
         folderButton.classList.add("folder-name");
-        folderButton.textContent = name;
+        folderButton.textContent = data.name;
 
-        folderButton.dataset.id = id;
+        folderButton.dataset.id = data.id;
 
         folderButton.addEventListener("click", () => {
-            this.currentFolderId = id;
+            this.currentFolderId = data.id;
+            this.todoManager.todo.loadTodos(this.currentFolderId);
         });
 
         return folderButton;
     }
 
-    createEditButton() {
+    createEditButton(data) {
         const buttonEdit = document.createElement("button");
         buttonEdit.classList.add("edit");
         buttonEdit.textContent = "✏️";
 
         buttonEdit.addEventListener("click", (e) => {
-            const folder = e.currentTarget.closest(".folder");
+            const folder = this.folders.find(item => item.id == data.id);
 
-            this.folderForm.openEdit(
-                folder.dataset.id,
-                folder.querySelector(".folder-name").textContent
-            );
+            this.folderForm.openEdit(folder.name, data.id);
         });
 
         return buttonEdit;
     }
 
-    createDeleteButton() {
+    createDeleteButton(id) {
         const buttonDelete = document.createElement("button");
         buttonDelete.classList.add("delete");
         buttonDelete.textContent = "✖";
 
         buttonDelete.addEventListener("click", (e) => {  
-            this.todoManager.deleteTodosFolder(this.currentFolderId);
-            e.currentTarget.closest(".folder").remove();
+            this.todoManager.deleteTodosFolder(id);
             this.currentFolderId = null;
-            this.todoManager.todo.loadTodos(this.currentFolderId);
+            this.folders = this.folders.filter(folder => folder.id != id);
+            this.loadFolders();
         });
 
         return buttonDelete;

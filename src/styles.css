@@ -40,12 +40,12 @@ button {
     flex-direction: column;
     flex: 1;
     gap: 5px;
+    margin-bottom: 25px;
 }
 
 .folder {
     display: flex;
     border: none;
-    margin-bottom: 30px;
     border-radius: 10px;
     height: 40px;
     width: 200px;
@@ -118,13 +118,29 @@ button {
 
 .todo {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    height: 60px;
+    height: 90px;
     width: 100%;
     background-color: white;
-    color: black;
+    color: #1992D4;
     border-radius: 10px;
     box-shadow: -10px 0px 20px -5px green
+}
+
+.todo-top {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    height: 60px;
+    width: 100%;
+}
+
+.todo-bot {
+    display: flex;
+    font-size: 12px;
+    align-self: flex-start;
+    padding-left: 20px;
 }
 
 .completed {
@@ -139,17 +155,17 @@ input[type="checkbox"] {
 }
 
 
-.todo .delete {
+.todo-top .delete {
     width: 80px;
     height: 60px;
     border-radius: 10px;
 }
 
-.todo-name {
+.todo-name-top {
     width: 100%;
 }
 
-.todo > button:first-of-type {
+.todo-top > button:first-of-type {
     align-self: end;
     border-radius: 10px;
     height: 100%;

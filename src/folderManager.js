@@ -39,6 +39,8 @@ export class FolderManager {
                 this.folder.renameFolder(this.folderForm.name, this.folderForm.editingId);
             }
 
+            this.folder.loadFolders();
+
             this.folderForm.hide();
             this.folderForm.clear();
         });

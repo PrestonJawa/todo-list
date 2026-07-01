@@ -25,10 +25,10 @@ export class FolderForm {
         this.show();
     }
 
-    openEdit(id, currentName) {
+    openEdit(name, id) {
         this.mode = "edit";
         this.editingId = id;
-        this.name = currentName;
+        this.name = name;
         this.show();
     }
 

@@ -8,6 +8,7 @@ export class TodoManager {
         this.folderManager = folderManager;
         this.todo = new Todo();
         this.todoForm = new TodoForm();
+        this.todo.setTodoForm(this.todoForm);
         this.newTodoButton = document.querySelector(".create-todo");
         this.initialize();
     }
@@ -20,7 +21,7 @@ export class TodoManager {
     initialize() {
 
         this.newTodoButton.addEventListener("click", () => {
-            this.todoForm.show();
+            this.todoForm.openCreate();
         });
 
         this.todoForm.close.addEventListener("click", () => {
@@ -34,8 +35,10 @@ export class TodoManager {
             const title = this.todoForm.form.querySelector("#todo-name").value;
             const priority = this.todoForm.form.querySelector("#todo-priority").value;
             const folderId = this.folderManager.folder.currentFolderId;
+            const dueDate = this.todoForm.dateInput.value;
 
             let priorityValue = 0;
+            console.log(folderId);
 
             if (!folderId) {
                 alert("Select a folder first.");
@@ -50,7 +53,11 @@ export class TodoManager {
                 priorityValue = 0
             }
 
-            this.todo.createTodo(title, folderId, priorityValue);
+            if (this.todoForm.mode == "create"){
+                this.todo.createTodo(title, folderId, priorityValue, dueDate);
+            } else {
+                this.todo.editTodo(this.todoForm.currentTodoId, title, priorityValue, dueDate)
+            }
             this.todo.loadTodos(folderId);
 
             this.todoForm.hide();

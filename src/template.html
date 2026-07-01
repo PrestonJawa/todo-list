@@ -17,17 +17,19 @@
             <div class="creation-buttons">
                 <Button class="folder-button">Create Folder</Button>
                 <button class="create-todo">Create Todo</button>
-
             </div>
         </div>
         <div class="main">
-            <div class="todo completed">
-                <input type="checkbox">
-                <button class="todo-name">Drink water</button>
-                <button class="delete">✖</button> 
+            <div class="todo">
+                <div class="todo-top">
+                    <input type="checkbox">
+                    <button class="todo-name">Drink water</button>
+                    <button class="delete">✖</button> 
+                </div>
+                <div class="todo-bot">
+                    July 3, 2024
                 </div>
             </div>
-
         </div>
     </div>
     <div id="folder-screen">
@@ -55,6 +57,13 @@
                     placeholder="Eg. Walk the Dog" 
                     required>
 
+            </div>
+            <div class="question">
+                <label for="todo-date">Due Date *</label>
+                <input type="date" 
+                id="todo-date" 
+                name="dueDate"
+                required>
             </div>
             <div class="question">
                 <label for="todo-priority">Priority *</label>
