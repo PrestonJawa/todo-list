@@ -1,10 +1,12 @@
+import { Storage } from "./storage.js"
+
 import { format } from "date-fns";
 
 export class Todo {
 
     constructor(){
         this.todoContainer = document.querySelector(".main");
-        this.todos = [];
+        this.todos = Storage.loadTodos();
     }
 
     setTodoForm(todoForm){
@@ -26,6 +28,7 @@ export class Todo {
     }
 
     loadTodos(folderId){
+        Storage.saveTodos(this.todos);
         this.todoContainer.innerHTML = "";
         const todos = this.todos.filter((todo) => todo.folderId == folderId);
 

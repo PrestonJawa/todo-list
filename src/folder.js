@@ -1,10 +1,13 @@
+import { Storage } from "./storage.js"
+
 export class Folder {
 
     constructor(folderForm) {
         this.container = document.querySelector(".folders");
         this.folderForm = folderForm;
         this.currentFolderId = null;
-        this.folders = [];
+        this.folders = Storage.loadFolders();
+        this.loadFolders();
     }
 
     setManager(todoManager){
@@ -46,6 +49,7 @@ export class Folder {
     }
 
     loadFolders(){
+        Storage.saveFolders(this.folders);
         this.container.innerHTML = "";
 
         for(let folder of this.folders){
